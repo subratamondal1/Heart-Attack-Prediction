@@ -1,1 +1,1 @@
-# heart-attack-prediction
+# `Heart Attack Prediction`
