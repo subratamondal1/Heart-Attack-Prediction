@@ -1,6 +1,6 @@
 # `Heart Attack Prediction`
 Heart Attack is a type of disease that affects the heart or blood vessels. The risk of certain heart diseases may be increased by smoking, high blood pressure, high cholesterol, unhealthy diet, lack of exercise, and obesity. `The main objective is to create an end-to-end Machine Learning Solution, on which if we give input data the ML Solution will provide us a result of:` **Whether the person has the Risk of Heart Attack or Not and with how much Certainity.** ` Based on that result it can provide useful information to the doctors and help them to diagnose the disease.
-> **Note** This readme.md is just the mere representation of the actual project, to get detailed view open the `heart-attack-prediction.ipynb` file present in the notebook folder.
+> **Note** This readme.md is just the mere representation of the actual project, to get detailed view open the [Notebook](https://github.com/subratasubro/heart-attack-prediction/blob/main/notebook/heart-attack-prediction.ipynb).
 ## `🎓Tech Stack`
   * Python
   * Pandas
@@ -20,7 +20,7 @@ An estimated 17.9 million people died from Cardiovascular Diseases, CVDs in 2019
 Create a predictive model so that critical information can be extracted from the data and provide insightful information to the doctors so, they can diagnose the disease effictively.
 
 ## 2 `Data Understanding / Data Loading`
-The data we got is from the Kaggle Website (https://www.kaggle.com/datasets/rashikrahmanpritom/heart-attack-analysis-prediction-dataset). 
+The data we got is from the Kaggle Website [Kaggle](https://www.kaggle.com/datasets/rashikrahmanpritom/heart-attack-analysis-prediction-dataset). 
 * This dataset contains 303 Unique Patients & 14 Unique Features out of which one is Target Feature with the value of 0 & 1. 
 * below is the Features with description :
 * **Age** : Age of the patient
@@ -80,4 +80,4 @@ The data we got is from the Kaggle Website (https://www.kaggle.com/datasets/rash
 * **Bi-Variate Analysis**
 * **Feature Scaling with RobustScaler**
   
-
+**...will update the remaining part soon. Open the [Ntebook](https://github.com/subratasubro/heart-attack-prediction/blob/main/notebook/heart-attack-prediction.ipynb) for complete project.**
