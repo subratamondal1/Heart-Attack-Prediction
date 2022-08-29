@@ -12,14 +12,15 @@ Heart Attack is a type of disease that affects the heart or blood vessels. The r
   * Kaggle
   
 ## `Data Science PIPELINE`
-<!-- ![Data Science PIPELINE](https://github.com/subratasubro/heart-attack-prediction/blob/main/images/datascience_pipeline.png) -->
+<img src='images/../images/CRISP-DM.svg' width = 500>
 
-## 1 `Problem Understanding`
+
+## 1 `Business Understanding`
 An estimated 17.9 million people died from Cardiovascular Diseases, CVDs in 2019, representing 32% of all global deaths. Of these deaths, 85% were due to heart attack and stroke. (According to WHO : World Health Organization). 
 
 Create a predictive model so that critical information can be extracted from the data and provide insightful information to the doctors so, they can diagnose the disease effictively.
 
-## 2 `Data Understanding / Data Loading`
+## 2 `Data Understanding`
 The data we got is from the Kaggle Website [Kaggle](https://www.kaggle.com/datasets/rashikrahmanpritom/heart-attack-analysis-prediction-dataset). 
 * This dataset contains 303 Unique Patients & 14 Unique Features out of which one is Target Feature with the value of 0 & 1. 
 * below is the Features with description :
@@ -79,5 +80,9 @@ The data we got is from the Kaggle Website [Kaggle](https://www.kaggle.com/datas
 * **Uni-Variate Analysis**
 * **Bi-Variate Analysis**
 * **Feature Scaling with RobustScaler**
+  
+## 4 `Modelling`
+## 5 `Evaluation`
+## 6 `Deployment`
   
 **...will update the remaining part soon. Download and Open the [Ntebook](https://github.com/subratasubro/heart-attack-prediction/blob/main/notebook/heart-attack-prediction.ipynb) for complete project.**
