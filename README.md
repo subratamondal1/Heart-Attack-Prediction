@@ -12,7 +12,9 @@ Heart Attack is a type of disease that affects the heart or blood vessels. The r
   * Kaggle
   
 ## `Data Science PIPELINE`
+<p align='center'>
 <img src='images/../images/CRISP-DM.svg' width = 500>
+</p>
 
 
 ## 1 `Business Understanding`
