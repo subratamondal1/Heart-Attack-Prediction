@@ -1,6 +1,6 @@
 # `Heart Attack Prediction`
 Heart Attack is a type of disease that affects the heart or blood vessels. The risk of certain heart diseases may be increased by smoking, high blood pressure, high cholesterol, unhealthy diet, lack of exercise, and obesity. `The main objective is to create an end-to-end Machine Learning Solution, on which if we give input data the ML Solution will provide us a result of:` **Whether the person has the Risk of Heart Attack or Not and with how much Certainity.** ` Based on that result it can provide useful information to the doctors and help them to diagnose the disease.
-> **Note** This readme.md is just the mere representation of the actual project, to get detailed view download and open the [Notebook](https://github.com/subratasubro/heart-attack-prediction/blob/main/notebook/heart-attack-prediction.ipynb) in Google Colab or Jupyter Notebook or Lab.
+> **Note** This readme.md is just the mere representation of the actual project, to get detailed view download and open the [Notebook](https://github.com/subratamondal1/heart-attack-prediction/blob/main/heart_attack_prediction.ipynb) in Google Colab or Jupyter Notebook or Lab.
 ## `🎓Tech Stack`
   * Python
   * Pandas
@@ -87,4 +87,4 @@ The data we got is from the Kaggle Website [Kaggle](https://www.kaggle.com/datas
 ## 5 `Evaluation`
 ## 6 `Deployment`
   
-**...will update the remaining part soon. Download and Open the [Ntebook](https://github.com/subratasubro/heart-attack-prediction/blob/main/notebook/heart-attack-prediction.ipynb) for complete project.**
+**...will update the remaining part soon. Download and Open the [Ntebook](https://github.com/subratamondal1/heart-attack-prediction/blob/main/heart_attack_prediction.ipynb) for complete project.**
