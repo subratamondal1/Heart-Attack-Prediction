@@ -27,35 +27,36 @@ numerical_columns = ["ST_depression", "age",
 
 def user_input():
     # gender M:1, F:0
-    gender = st.sidebar.select_slider(
-        "**Gender**", options=["Male", "Female"], value="Male")
+    gender = st.sidebar.radio(
+        "**Gender**", options=("Male", "Female"), horizontal=True)
+
     # fasting_blood_sugar Yes:1 No:0
-    fasting_blood_sugar = st.sidebar.select_slider(
-        "**Fasting Blood Sugar** `> 120 mg/dl`", options=["Yes", "No"], value="Yes")
+    fasting_blood_sugar = st.sidebar.radio(
+        "**Fasting Blood Sugar** `> 120 mg/dl`", options=("Yes", "No"), horizontal=True)
 
     # exercise_induced_chest_pain Yes:1 No:0
-    exercise_induced_chest_pain = st.sidebar.select_slider(
-        "**Exercise Induced Chest Pain**", options=["Yes", "No"], value="Yes")
+    exercise_induced_chest_pain = st.sidebar.radio(
+        "**Exercise Induced Chest Pain**", options=("Yes", "No"), horizontal=True)
 
     # resting_ecg Normal:0 Abnormal:1 Hypertrophy:2
-    resting_ecg = st.sidebar.select_slider(
-        "**Resting ECG**", options=["Normal", "Abnormal", "Hypertrophy"], value="Abnormal")
+    resting_ecg = st.sidebar.radio(
+        "**Resting ECG**", options=("Normal", "Abnormal", "Hypertrophy"), horizontal=True)
 
     # slope_of_peak_ST_segment Unsloping:0 Flat:1 Downsloping:2
-    slope_of_peak_ST_segment = st.sidebar.select_slider("**Slop of peak ST Segment**", options=[
-        "Unsloping", "Flat", "Downsloping"], value="Downsloping")
+    slope_of_peak_ST_segment = st.sidebar.radio("**Slop of peak ST Segment**", options=(
+        "Unsloping", "Flat", "Downsloping"), horizontal=True)
 
     # chest_pain_type Typical:0 Atypical:1 Non-Anginal:2 Asymptomatic:3
-    chest_pain_type = st.sidebar.select_slider("**Chest Pain Type**", options=[
-        "Typical", "Atypical", "Non-Anginal", "Asymptomatic"], value="Asymptomatic")
+    chest_pain_type = st.sidebar.radio("**Chest Pain Type**", options=(
+        "Typical", "Atypical", "Non-Anginal", "Asymptomatic"), horizontal=True)
 
     # thalassemia Null:0 Fixed Defect:1 Normal:2 Reversible Defect:3
-    thalassemia = st.sidebar.select_slider(
-        "**Thalassemia**", options=["Null", "Fixed Defect", "Normal", "Reversible Defect"], value="Fixed Defect")
+    thalassemia = st.sidebar.radio(
+        "**Thalassemia**", options=("Null", "Fixed Defect", "Normal", "Reversible Defect"), horizontal=True)
 
     # fluoroscopy_colored_major_vessels
-    fluoroscopy_colored_major_vessels = st.sidebar.select_slider(
-        "**Fluoroscopy colored major vessels**", options=[0, 1, 2, 3, 4], value=4)
+    fluoroscopy_colored_major_vessels = st.sidebar.radio(
+        "**Fluoroscopy colored major vessels**", options=(0, 1, 2, 3, 4), horizontal=True)
 
     # ST_depression
     ST_depression = st.sidebar.slider(
