@@ -138,7 +138,6 @@ data = {
 
 # transposed version of data
 data_df = pd.DataFrame(data, index=[0])
-data_df[numerical_columns]
 data_display = data_df.T
 
 # naming the column
@@ -149,7 +148,6 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.write(data_display)
-
 
 with col2:
 
@@ -228,7 +226,6 @@ with col2:
         }
 
         X = pd.DataFrame(input_processed_data, index=[0])
-        X[numerical_columns]
 
         # input categorical columns
         input_categorical_cols = [gender, fasting_blood_sugar, exercise_induced_chest_pain, resting_ecg,
@@ -251,5 +248,7 @@ with col2:
 
         if result == 1:
             st.header("Risk")
+            st.balloons()
         else:
             st.header("No Risk")
+            st.balloons()
