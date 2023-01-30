@@ -1,8 +1,10 @@
 # `Heart Attack Prediction`
+[Click here for the Web App](https://subratamondal1-heart-attack-prediction-app-p4oz89.streamlit.app/)
 Heart Attack is a type of disease that affects the heart or blood vessels. The risk of certain heart diseases may be increased by smoking, high blood pressure, high cholesterol, unhealthy diet, lack of exercise, and obesity. `The main objective is to create an end-to-end Machine Learning Solution, on which if we give input data the ML Solution will provide us a result of:` **Whether the person has the Risk of Heart Attack or Not and with how much Certainity.** ` Based on that result it can provide useful information to the doctors and help them to diagnose the disease.
 > **Note** This readme.md is just the mere representation of the actual project, to get detailed view [Click This](https://github.com/subratamondal1/heart-attack-prediction/blob/main/heart_attack_prediction.ipynb) in Google Colab or Jupyter Notebook or Lab.
 ## `🎓Tech Stack`
   * Python
+  * Streamlit for web app and cloud hosting
   * Pandas
   * Numpy
   * Matplotlib
@@ -11,9 +13,9 @@ Heart Attack is a type of disease that affects the heart or blood vessels. The r
   * Jupyter Notebook
   * Kaggle
   
-## `Data Science PIPELINE`
+## `Data Science, CRISP-DM Framework`
 <p align='center'>
-<img src='images/../images/CRISP-DM.svg' width = 500>
+<img src='assets/images/../images/CRISP-DM.svg' width = 500>
 </p>
 
 
