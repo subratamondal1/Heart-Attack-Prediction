@@ -7,35 +7,29 @@ import sklearn.preprocessing as preprocessing
 import sklearn.model_selection as model_selection
 import pickle
 
+# import minmax_scaler
+minmax_scaler = pickle.load(open("minmax_scaler.pkl", "rb"))
+
 # import logistic regression model
 model_lr = pickle.load(open("model_lr.pkl", "rb"))
 
-# import data
-cleaned_data = pd.read_csv("cleaned_data.csv")
-
 # title
 st.title("Heart Attack Predictor")
-
-# caption
 st.caption(
-    "This app predicts whether the patient has the `Risk of Heart Attack or Not`.")
+    "This app predicts whether the patient has `Risk of Heart Attack or Not`.")
 
 # sidebar
 st.sidebar.header("Input Parameters")
 
-# target column
 target_column = "target"
-
-# categorical columns
 categorical_columns = ["gender", "fasting_blood_sugar", "exercise_induced_chest_pain", "resting_ecg",
                        "slope_of_peak_ST_segment", "chest_pain_type", "thalassemia",
                        "fluoroscopy_colored_major_vessels"]
-
-# numerical columns
 numerical_columns = ["ST_depression", "age",
                      "resting_bp", "max_heart_rate", "cholesterol"]
 
-# user input starts from here
+# user input
+
 
 # gender M:1, F:0
 gender = st.sidebar.radio(
@@ -69,57 +63,25 @@ thalassemia = st.sidebar.radio(
 fluoroscopy_colored_major_vessels = st.sidebar.radio(
     "**Fluoroscopy colored major vessels**", options=(0, 1, 2, 3, 4), horizontal=True)
 
-# ST_depression min value
-ST_depression_min = float(cleaned_data["ST_depression"].min())
-# ST_depression max value
-ST_depression_max = float(cleaned_data["ST_depression"].max())
-# ST_depression avg value
-ST_depression_avg = (ST_depression_min+ST_depression_max)/2
 # ST_depression
 ST_depression = st.sidebar.slider(
-    "**ST depression**", min_value=ST_depression_min, max_value=ST_depression_max, value=ST_depression_avg)
+    "**ST depression**", min_value=0.0, max_value=10.0, value=4.2)
 
-# age min value
-age_min = int(cleaned_data["age"].min())
-# age max value
-age_max = int(cleaned_data["age"].max())
-# age avg value
-age_avg = int((age_min+age_max)/2)
 # age
-age = st.sidebar.slider(
-    "Age", min_value=age_min, max_value=age_max, value=age_avg)
+age = st.sidebar.slider("Age", 20, 110, 50)
 
-# resting_bp min value
-resting_bp_min = float(cleaned_data["resting_bp"].min())
-# resting_bp max value
-resting_bp_max = float(cleaned_data["resting_bp"].max())
-# resting_bp avg value
-resting_bp_avg = (resting_bp_min + resting_bp_max)/2
 # resting_bp
 resting_bp = st.sidebar.slider(
-    "**Resting Blood Pressure** `in mm Hg`", min_value=resting_bp_min, max_value=resting_bp_max, value=resting_bp_avg)
+    "**Resting Blood Pressure** `in mm Hg`", min_value=50.0, max_value=300.0, value=160.0)
 
-# max_heart_rate min value
-max_heart_rate_min = float(cleaned_data["max_heart_rate"].min())
-# max_heart_rate max value
-max_heart_rate_max = float(cleaned_data["max_heart_rate"].max())
-# max_heart_rate avg value
-max_heart_rate_avg = (max_heart_rate_min + max_heart_rate_max)/2
 # max_heart_rate
 max_heart_rate = st.sidebar.slider(
-    "**Max Heart Rate Achieved**", min_value=max_heart_rate_min, max_value=max_heart_rate_max, value=max_heart_rate_avg)
+    "**Max Heart Rate Achieved**", min_value=50.0, max_value=300.0, value=95.0)
 
-# cholesterol min value
-cholesterol_min = float(cleaned_data["cholesterol"].min())
-# cholesterol max value
-cholesterol_max = float(cleaned_data["cholesterol"].max())
-# cholesterol avg value
-cholesterol_avg = (cholesterol_min+cholesterol_max)/2
 # cholesterol
 cholesterol = st.sidebar.slider(
-    "**Cholesterol** `in mg/dl`", min_value=cholesterol_min, max_value=cholesterol_max, value=cholesterol_avg)
+    "**Cholesterol** `in mg/dl`", min_value=100.0, max_value=800.0, value=249.0)
 
-# data dictionary
 data = {
     "gender": gender,
     "fasting_blood_sugar": fasting_blood_sugar,
@@ -137,9 +99,7 @@ data = {
 }
 
 # transposed version of data
-data_df = pd.DataFrame(data, index=[0])
-data_df[numerical_columns]
-data_display = data_df.T
+data_display = pd.DataFrame(data, index=[0]).T
 
 # naming the column
 data_display.columns = ["Values"]
@@ -152,6 +112,12 @@ with col1:
 
 
 with col2:
+    st.write(" ")
+    st.write(" ")
+    st.write(" ")
+    st.write(" ")
+    st.write(" ")
+    st.write(" ")
 
     # predict
     if st.button("PREDICT"):
@@ -228,24 +194,16 @@ with col2:
         }
 
         X = pd.DataFrame(input_processed_data, index=[0])
-        X[numerical_columns]
 
         # input categorical columns
-        input_categorical_cols = [gender, fasting_blood_sugar, exercise_induced_chest_pain, resting_ecg,
-                                  slope_of_peak_ST_segment, chest_pain_type, thalassemia,
-                                  fluoroscopy_colored_major_vessels]
-        input_numerical_cols = [ST_depression, age,
-                                resting_bp, max_heart_rate, cholesterol]
+        input_cat_col = [gender, fasting_blood_sugar, exercise_induced_chest_pain, resting_ecg,
+                         slope_of_peak_ST_segment, chest_pain_type, thalassemia,
+                         fluoroscopy_colored_major_vessels]
 
-        # scale numerical columns
-        input_num = X[numerical_columns].to_numpy()
-        # instance of RobustScaler
+        X_num = X[numerical_columns].to_numpy()
         robust_scaler = preprocessing.RobustScaler()
-        # scaled data
-        scaled_num_values = robust_scaler.fit_transform(
-            input_num.reshape(5, 1))
-
-        X[numerical_columns] = scaled_num_values.reshape(1, 5)
+        scaled_X_num = robust_scaler.fit_transform(X_num.reshape(-1, 1))
+        X[numerical_columns] = scaled_X_num.T
 
         result = model_lr.predict(X.to_numpy().reshape(1, -1))
 
