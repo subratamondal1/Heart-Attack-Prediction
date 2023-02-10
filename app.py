@@ -7,11 +7,31 @@ import sklearn.preprocessing as preprocessing
 import sklearn.model_selection as model_selection
 import pickle
 
+
 # import logistic regression model
 model_lr = pickle.load(open("model_lr.pkl", "rb"))
+model_best = pickle.load(open("model_with_best_params.pkl", "rb"))
+pipe = pickle.load(open("pipe.pkl", "rb"))
 
 # import data
 cleaned_data = pd.read_csv("cleaned_data.csv")
+final_data = pd.read_csv("final_data_pre_scaled.csv")
+final_data = final_data.rename({
+    "age": "age",
+    "sex": "gender",
+    "cp": "chest_pain_type",
+    "trtbps": "resting_bp",
+    "chol": "cholesterol",
+    "fbs": "fasting_blood_sugar",
+    "restecg": "resting_ecg",
+    "thalach": "max_heart_rate",
+    "exang": "exercise_induced_chest_pain",
+    "old_peak": "ST_depression",
+    "slp": "slope_of_peak_ST_segment",
+    "caa": "fluoroscopy_colored_major_vessels",
+    "thal": "thalassemia",
+    "target": "target"
+}, axis=1)
 
 # title
 st.title("Heart Attack Predictor")
@@ -63,7 +83,7 @@ chest_pain_type = st.sidebar.radio("**Chest Pain Type**", options=(
 
 # thalassemia Null:0 Fixed Defect:1 Normal:2 Reversible Defect:3
 thalassemia = st.sidebar.radio(
-    "**Thalassemia**", options=("Null", "Fixed Defect", "Normal", "Reversible Defect"), horizontal=True)
+    "**Thalassemia**", options=("Fixed Defect", "Normal", "Reversible Defect"), horizontal=True)
 
 # fluoroscopy_colored_major_vessels
 fluoroscopy_colored_major_vessels = st.sidebar.radio(
@@ -130,11 +150,15 @@ data = {
     "thalassemia": thalassemia,
     "fluoroscopy_colored_major_vessels": float(fluoroscopy_colored_major_vessels),
     "ST_depression": float(ST_depression),
-    "age": float(age),
+    "age": int(age),
     "resting_bp": float(resting_bp),
     "max_heart_rate": float(max_heart_rate),
     "cholesterol": float(cholesterol)
 }
+
+numerical_features = ['age', 'max_heart_rate', 'resting_bp', 'ST_depression']
+categorical_features = ['gender', 'chest_pain_type', 'exercise_induced_chest_pain', 'slope_of_peak_ST_segment',
+                        'fluoroscopy_colored_major_vessels', 'thalassemia']
 
 # transposed version of data
 data_df = pd.DataFrame(data, index=[0])
@@ -208,43 +232,10 @@ with col2:
         else:
             thalassemia = 3
 
-        # input  dataframe
-        input_processed_data = {
-            "gender": gender,
-            "fasting_blood_sugar": fasting_blood_sugar,
-            "exercise_induced_chest_pain": exercise_induced_chest_pain,
-            "resting_ecg": resting_ecg,
-            "slope_of_peak_ST_segment": slope_of_peak_ST_segment,
-            "chest_pain_type": chest_pain_type,
-            "thalassemia": thalassemia,
-            "fluoroscopy_colored_major_vessels": float(fluoroscopy_colored_major_vessels),
-            "ST_depression": float(ST_depression),
-            "age": float(age),
-            "resting_bp": float(resting_bp),
-            "max_heart_rate": float(max_heart_rate),
-            "cholesterol": float(cholesterol)
-        }
+        user_input = np.array([age, gender,	chest_pain_type, resting_bp, max_heart_rate,	exercise_induced_chest_pain,
+                               ST_depression, slope_of_peak_ST_segment, fluoroscopy_colored_major_vessels, thalassemia]).reshape(1, 10)
 
-        X = pd.DataFrame(input_processed_data, index=[0])
-
-        # input categorical columns
-        input_categorical_cols = [gender, fasting_blood_sugar, exercise_induced_chest_pain, resting_ecg,
-                                  slope_of_peak_ST_segment, chest_pain_type, thalassemia,
-                                  fluoroscopy_colored_major_vessels]
-        input_numerical_cols = [ST_depression, age,
-                                resting_bp, max_heart_rate, cholesterol]
-
-        # scale numerical columns
-        input_num = X[numerical_columns].to_numpy()
-        # instance of RobustScaler
-        robust_scaler = preprocessing.RobustScaler()
-        # scaled data
-        scaled_num_values = robust_scaler.fit_transform(
-            input_num.reshape(5, 1))
-
-        X[numerical_columns] = scaled_num_values.reshape(1, 5)
-
-        result = model_lr.predict(X.to_numpy().reshape(1, -1))
+        result = pipe.predict(user_input)
 
         if result == 1:
             st.header("Risk")
