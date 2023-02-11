@@ -239,7 +239,6 @@ with col2:
 
         if result == 1:
             st.header("Risk")
-            st.balloons()
         else:
             st.header("No Risk")
             st.balloons()
